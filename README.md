@@ -31,3 +31,23 @@ orientation, and each holds one image at 100% width and height with `cover` fit,
 | expo-image, overflow: visible | `expo-image` `Image` with `overflow: 'visible'` in its style from the first render |
 
 Nothing else animates. Whatever moves during a rotation is UIKit's own rotation animation.
+
+## Result
+
+| Phase | Green item | expo-image | React Native Image | expo-image, overflow: visible |
+| --- | --- | --- | --- | --- |
+| Portrait, at rest | 118 pt wide | fills the item | fills the item | fills the item |
+| Rotating portrait → landscape | grows 118 → 275 pt | fills the item while it grows | same | same |
+| Landscape, at rest | 275 pt wide | fills the item | fills the item | fills the item |
+| **Rotating landscape → portrait** | shrinks 275 → 118 pt | **image already cut to 118 pt, green shows next to it for the whole animation** | **same** | **same** |
+| Portrait, at rest | 118 pt wide | fills the item | fills the item | fills the item |
+
+With Slow Animations on, the rotation takes about 3 s and the gap is visible in every frame of it
+(`media/landscape-to-portrait-frames.png`, one frame every 0.5 s). At normal speed the same thing
+happens for the ~0.4 s of the rotation (`media/normal-rotation.mp4`).
+
+`overflow: 'visible'` on the expo-image does not change anything, so there is no way around it
+from JavaScript. The React Native `Image` row behaves the same, which matches the React Native
+issue linked from the Expo issue.
+
+Step logs with timestamps: `media/slow-rotation.txt`, `media/normal-rotation.txt`.
