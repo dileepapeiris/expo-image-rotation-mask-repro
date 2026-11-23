@@ -3,11 +3,12 @@
     "name": "expo-image-rotation-mask-repro",
     "slug": "expo-image-rotation-mask-repro",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dileepapeiris.expoimagerotationmask"
     },
     "android": {
       "adaptiveIcon": {
