@@ -51,3 +51,24 @@ from JavaScript. The React Native `Image` row behaves the same, which matches th
 issue linked from the Expo issue.
 
 Step logs with timestamps: `media/slow-rotation.txt`, `media/normal-rotation.txt`.
+
+## Media
+
+Landscape → portrait with Slow Animations on, one frame every 0.5 s. The image in every row is
+already at its final narrow width while the green item behind it is still wide:
+
+![Landscape to portrait, six frames from the slow-motion recording](media/landscape-to-portrait-frames.png)
+
+Portrait → landscape, same recording. Nothing is cut off in this direction because the mask is
+already at the larger final size:
+
+![Portrait to landscape, six frames from the slow-motion recording](media/portrait-to-landscape-frames.png)
+
+![Landscape to portrait, slow motion](media/landscape-to-portrait-slow.gif)
+
+Screen recordings: `media/slow-rotation.mp4` (Slow Animations on, both directions, ~20 s) and
+`media/normal-rotation.mp4` (normal speed).
+Full slow-motion GIF: `media/slow-rotation.gif`.
+Screenshots: `media/slow-rotation-0-portrait.png` through `media/slow-rotation-6-portrait.png`;
+`slow-rotation-4-rotating-to-portrait.png` is taken 1.7 s into the landscape → portrait rotation.
+Simulator and toolchain details: `media/simulator-ios-version.txt`.
