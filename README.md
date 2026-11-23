@@ -17,3 +17,17 @@ npx expo run:ios   # development build, iOS simulator or device
 Rotate between portrait and landscape. In the simulator, turn on **Device > Slow Animations**
 (DeviceHub in Xcode 27, Debug > Slow Animations in older Simulator.app) and rotate with
 Cmd+Left / Cmd+Right. The clipping is easiest to see going from landscape to portrait.
+
+## What the screen shows
+
+Three rows of three green items. Each item is `flex: 1` in a row, so its width changes with the
+orientation, and each holds one image at 100% width and height with `cover` fit, from a bundled
+1,200 × 800 test pattern.
+
+| Row | Component |
+| --- | --- |
+| expo-image | `expo-image` `Image`, `contentFit="cover"` |
+| React Native Image | `react-native` `Image`, `resizeMode="cover"` |
+| expo-image, overflow: visible | `expo-image` `Image` with `overflow: 'visible'` in its style from the first render |
+
+Nothing else animates. Whatever moves during a rotation is UIKit's own rotation animation.
