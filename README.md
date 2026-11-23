@@ -56,8 +56,9 @@ Step logs with timestamps: `media/slow-rotation.txt`, `media/normal-rotation.txt
 
 The clearest single picture. Top: landscape, at rest. Bottom: the same screen 0.2 s into the
 rotation towards portrait, from the slow-motion recording, turned upright. The green items are
-still at their landscape width, but every image in every row is already cut to its portrait
-width, and the rest of each item shows green:
+still at their landscape width (yellow outline, 275 pt), but every image in every row is already
+cut to its portrait width (white outline, 118 pt), and the rest of each item shows the item's
+green background:
 
 ![Landscape at rest above, 0.2 s into the rotation to portrait below](media/landscape-rest-vs-rotating.png)
 
