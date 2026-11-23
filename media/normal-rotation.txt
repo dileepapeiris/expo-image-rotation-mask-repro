@@ -1,0 +1,11 @@
+20:29:36.096  run normal-rotation on iPhone 17 Pro simulator (iOS 26.5), Slow Animations off
+20:29:36.502  screenshot normal-rotation-0-portrait.png
+20:29:38.685  Cmd+Right: rotate portrait -> landscape
+20:29:40.338  screenshot normal-rotation-1-rotating-to-landscape.png
+20:29:41.753  screenshot normal-rotation-2-rotating-to-landscape.png
+20:29:47.204  screenshot normal-rotation-3-landscape.png
+20:29:47.355  Cmd+Left: rotate landscape -> portrait
+20:29:49.009  screenshot normal-rotation-4-rotating-to-portrait.png
+20:29:50.445  screenshot normal-rotation-5-rotating-to-portrait.png
+20:29:55.872  screenshot normal-rotation-6-portrait.png
+20:29:56.935  recording saved normal-rotation.mp4
