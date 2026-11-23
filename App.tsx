@@ -1,6 +1,9 @@
+import { Image as ExpoImage } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+const SOURCE = require('./assets/test-pattern.png');
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -22,7 +25,7 @@ export default function App() {
     <View style={styles.screen}>
       <StatusBar style="light" />
       <Row label="expo-image">
-        {null}
+        <ExpoImage source={SOURCE} contentFit="cover" style={styles.fill} />
       </Row>
     </View>
   );
@@ -52,5 +55,9 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 90,
     backgroundColor: 'green',
+  },
+  fill: {
+    width: '100%',
+    height: '100%',
   },
 });
