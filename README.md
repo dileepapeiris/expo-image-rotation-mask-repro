@@ -86,3 +86,14 @@ expo-image's `ImageView.swift` sets `clipsToBounds = true` in its initializer an
 lands on it. `applyContentPosition` already compensates that mask when it moves the image for
 `contentPosition`, but only its origin, not an animated size. Because expo-image turns clipping on
 itself, `overflow: 'visible'` from JavaScript does not prevent the mask.
+
+## Workaround
+
+None from JavaScript. `overflow: 'visible'` on the image makes no difference (third row), and a
+`borderRadius` is not involved. For a size change you drive yourself, animate it with `Animated`
+or Reanimated instead of relying on a UIKit animation: every frame then re-lays out the view and
+React Native recreates the mask at the current size.
+
+A fix in expo-image would host `sdImageView` inside a plain `UIView` that does the clipping, so
+React Native's loop no longer finds a `UIImageView` to mask and the image animates with its
+container. That would also make the mask compensation in `applyContentPosition` unnecessary.
