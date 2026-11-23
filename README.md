@@ -54,6 +54,13 @@ Step logs with timestamps: `media/slow-rotation.txt`, `media/normal-rotation.txt
 
 ## Media
 
+The clearest single picture. Top: landscape, at rest. Bottom: the same screen 0.2 s into the
+rotation towards portrait, from the slow-motion recording, turned upright. The green items are
+still at their landscape width, but every image in every row is already cut to its portrait
+width, and the rest of each item shows green:
+
+![Landscape at rest above, 0.2 s into the rotation to portrait below](media/landscape-rest-vs-rotating.png)
+
 Landscape → portrait with Slow Animations on, one frame every 0.5 s. The image in every row is
 already at its final narrow width while the green item behind it is still wide:
 
