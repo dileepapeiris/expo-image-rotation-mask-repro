@@ -30,6 +30,9 @@ export default function App() {
       <Row label="React Native Image">
         <Image source={SOURCE} resizeMode="cover" style={styles.fill} />
       </Row>
+      <Row label="expo-image, overflow: visible">
+        <ExpoImage source={SOURCE} contentFit="cover" style={[styles.fill, styles.visible]} />
+      </Row>
     </View>
   );
 }
@@ -62,5 +65,8 @@ const styles = StyleSheet.create({
   fill: {
     width: '100%',
     height: '100%',
+  },
+  visible: {
+    overflow: 'visible',
   },
 });
