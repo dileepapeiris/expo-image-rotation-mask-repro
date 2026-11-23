@@ -1,0 +1,11 @@
+20:29:12.248  run slow-rotation on iPhone 17 Pro simulator (iOS 26.5), Slow Animations on
+20:29:12.679  screenshot slow-rotation-0-portrait.png
+20:29:14.860  Cmd+Right: rotate portrait -> landscape
+20:29:16.493  screenshot slow-rotation-1-rotating-to-landscape.png
+20:29:17.941  screenshot slow-rotation-2-rotating-to-landscape.png
+20:29:23.391  screenshot slow-rotation-3-landscape.png
+20:29:23.539  Cmd+Left: rotate landscape -> portrait
+20:29:25.200  screenshot slow-rotation-4-rotating-to-portrait.png
+20:29:26.653  screenshot slow-rotation-5-rotating-to-portrait.png
+20:29:32.087  screenshot slow-rotation-6-portrait.png
+20:29:33.180  recording saved slow-rotation.mp4
