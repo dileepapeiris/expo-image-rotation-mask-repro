@@ -1,7 +1,7 @@
 import { Image as ExpoImage } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 const SOURCE = require('./assets/test-pattern.png');
 
@@ -26,6 +26,9 @@ export default function App() {
       <StatusBar style="light" />
       <Row label="expo-image">
         <ExpoImage source={SOURCE} contentFit="cover" style={styles.fill} />
+      </Row>
+      <Row label="React Native Image">
+        <Image source={SOURCE} resizeMode="cover" style={styles.fill} />
       </Row>
     </View>
   );
