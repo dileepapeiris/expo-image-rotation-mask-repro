@@ -72,3 +72,17 @@ Full slow-motion GIF: `media/slow-rotation.gif`.
 Screenshots: `media/slow-rotation-0-portrait.png` through `media/slow-rotation-6-portrait.png`;
 `slow-rotation-4-rotating-to-portrait.png` is taken 1.7 s into the landscape → portrait rotation.
 Simulator and toolchain details: `media/simulator-ios-version.txt`.
+
+## Cause
+
+React Native's `RCTViewComponentView.mm` (`invalidateLayer`) puts a mask layer on every
+`UIImageView` subview of a view that clips its content, sized to that subview's bounds at the time
+of the layout. The mask is a plain `CAShapeLayer`; UIKit animates the view's bounds during a
+rotation, but nothing animates the mask, so the mask is at the end-of-rotation size while the
+view is still mid-animation.
+
+expo-image's `ImageView.swift` sets `clipsToBounds = true` in its initializer and adds
+`sdImageView`, an `SDAnimatedImageView` (a `UIImageView`), as a direct subview, so the same mask
+lands on it. `applyContentPosition` already compensates that mask when it moves the image for
+`contentPosition`, but only its origin, not an animated size. Because expo-image turns clipping on
+itself, `overflow: 'visible'` from JavaScript does not prevent the mask.
