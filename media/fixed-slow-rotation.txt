@@ -1,0 +1,11 @@
+08:59:55.879  run fixed-slow-rotation on iPhone 17 Pro simulator (iOS 26.5), Slow Animations on, expo-image with the fix (built from source)
+08:59:56.241  screenshot fixed-slow-rotation-0-portrait.png
+08:59:58.353  Cmd+Right: rotate portrait -> landscape
+08:59:59.953  screenshot fixed-slow-rotation-1-rotating-to-landscape.png
+09:00:01.340  screenshot fixed-slow-rotation-2-rotating-to-landscape.png
+09:00:06.766  screenshot fixed-slow-rotation-3-landscape.png
+09:00:06.906  Cmd+Left: rotate landscape -> portrait
+09:00:08.507  screenshot fixed-slow-rotation-4-rotating-to-portrait.png
+09:00:09.908  screenshot fixed-slow-rotation-5-rotating-to-portrait.png
+09:00:15.317  screenshot fixed-slow-rotation-6-portrait.png
+09:00:16.410  recording saved fixed-slow-rotation.mp4
