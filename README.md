@@ -52,7 +52,31 @@ issue linked from the Expo issue.
 
 Step logs with timestamps: `media/slow-rotation.txt`, `media/normal-rotation.txt`.
 
+### With the fix
+
+The same sweep with the change from the fix branch applied to `node_modules/expo-image/ios/ImageView.swift`:
+`sdImageView` is hosted in a plain `UIView`, so it is no longer a direct `UIImageView` subview of the
+clipping view and React Native's loop does not mask it. expo-image 58 ships as a precompiled
+XCFramework, so the patched Swift only takes effect when the pod is built from source; the
+repo's `package.json` sets `expo.autolinking.ios.buildFromSource: ["ExpoImage"]` for that.
+
+| Phase | expo-image | React Native Image | expo-image, overflow: visible |
+| --- | --- | --- | --- |
+| Rotating portrait → landscape | fills the item while it grows | same | same |
+| **Rotating landscape → portrait** | **fills the item for the whole animation** | still cut to 118 pt, green shows (unchanged) | **fills the item** |
+
+Step log: `media/fixed-slow-rotation.txt`.
+
 ## Media
+
+Before (published expo-image 58.0.18) above, after (with the fix) below, both 0.2 s into the
+rotation to portrait. The React Native row is untouched by the fix and still shows the gap:
+
+![Before and after, 0.2 s into the rotation to portrait](media/before-after-rotating.png)
+
+![Before and after, one frame every 0.5 s through the rotation](media/before-after-frames.png)
+
+![Before on the left, after on the right, slow motion](media/before-after-slow.gif)
 
 The clearest single picture. Top: landscape, at rest. Bottom: the same screen 0.2 s into the
 rotation towards portrait, from the slow-motion recording, turned upright. The green items are
@@ -74,8 +98,9 @@ already at the larger final size:
 
 ![Landscape to portrait, slow motion](media/landscape-to-portrait-slow.gif)
 
-Screen recordings: `media/slow-rotation.mp4` (Slow Animations on, both directions, ~20 s) and
-`media/normal-rotation.mp4` (normal speed).
+Screen recordings: `media/slow-rotation.mp4` (Slow Animations on, both directions, ~20 s),
+`media/normal-rotation.mp4` (normal speed) and `media/fixed-slow-rotation.mp4` (with the fix).
+Fixed-run frames: `media/fixed-landscape-to-portrait-frames.png`; screenshots `media/fixed-slow-rotation-<step>.png`.
 Full slow-motion GIF: `media/slow-rotation.gif`.
 Screenshots: `media/slow-rotation-0-portrait.png` through `media/slow-rotation-6-portrait.png`;
 `slow-rotation-4-rotating-to-portrait.png` is taken 1.7 s into the landscape → portrait rotation.
@@ -102,6 +127,9 @@ None from JavaScript. `overflow: 'visible'` on the image makes no difference (th
 or Reanimated instead of relying on a UIKit animation: every frame then re-lays out the view and
 React Native recreates the mask at the current size.
 
-A fix in expo-image would host `sdImageView` inside a plain `UIView` that does the clipping, so
-React Native's loop no longer finds a `UIImageView` to mask and the image animates with its
-container. That would also make the mask compensation in `applyContentPosition` unnecessary.
+## Fix
+
+Host `sdImageView` inside a plain `UIView`, so React Native's loop no longer finds a `UIImageView`
+to mask and the image animates with its container. The mask compensation in `applyContentPosition`
+and its KVO observer become unnecessary. Verified above ("With the fix"); branch
+`fix/expo-image-rotation-mask` at https://github.com/dileepapeiris/expo.
